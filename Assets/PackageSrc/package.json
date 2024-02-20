@@ -1,0 +1,25 @@
+{
+  "name": "com.uapp-toolkit.deep-link-commands",
+  "version": "0.0.1",
+  "displayName": "UAppToolkit.DeepLinkCommands",
+  "description": "UAppToolkit DeepLinkCommands",
+  "unity": "2019.1",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "keywords": [
+    "deepLink",
+    "scripting"
+  ],
+  "author": {
+    "name": "Surov Volodymyr",
+    "email": "vovkasu@gmail.com"
+  },
+  "samples": [
+    {
+      "displayName": "DeepLinkCommands sample",
+      "description": "DeepLinkCommands sample.",
+      "path": "Samples~/DeepLinkCommandsSample"
+    }
+  ]  
+}  
