@@ -161,7 +161,9 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.2DProject
+    Android: com.uapptoolkit.deeplinkcommands
+    Standalone: com.uapptoolkit.deeplinkcommands
+    iPhone: com.uapptoolkit.deeplinkcommands
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -227,8 +229,10 @@ PlayerSettings:
   iOSLaunchScreenCustomStoryboardPath: 
   iOSLaunchScreeniPadCustomStoryboardPath: 
   iOSDeviceRequirements: []
-  iOSURLSchemes: []
-  macOSURLSchemes: []
+  iOSURLSchemes:
+  - uapptoolkit
+  macOSURLSchemes:
+  - uapptoolkit
   iOSBackgroundModes: 0
   iOSMetalForceHardShadows: 0
   metalEditorSupport: 1
