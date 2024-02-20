@@ -1,3 +1,22 @@
 {
-	"name": "DeepLinkCommands"
+    "name": "DeepLinkCommands",
+    "rootNamespace": "",
+    "references": [
+        "GUID:2a37df438292d4903b4e5159c5de3bf9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "appsflyer-unity-plugin",
+            "expression": "6",
+            "define": "APPS_FLYER_ENABLED"
+        }
+    ],
+    "noEngineReferences": false
 }
