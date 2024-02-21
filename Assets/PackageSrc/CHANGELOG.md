@@ -1,9 +1,13 @@
 Changelog
 =========
 
-[0.0.1] - 2024.02.20
+[1.0.0] - 2024.02.21
 --------------------
 * **Added**
-    * **QWERTY** description
+    * **DeepLinksManager** try run commands by URL. If project include AppsFlyer - implement callback functions.
+    * **DeepLinkCommandBase** abstract class/ScriptableObject as command
+    * Assembly definitions for ***Runtime***
+    * Sample ***DeepLinkCommandsSample***
+    * Documentation for testing on Windows
 * **Changed** -
 * **Fixed** -

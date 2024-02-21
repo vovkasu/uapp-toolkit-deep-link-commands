@@ -1,12 +1,17 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UAppToolkit.DeepLinkCommands
+namespace UAppToolkit.DeepLinkCommands.Sample
 {
     public class DeepLinksManager : MonoBehaviour
     {
-        public string deeplinkURL;
+        public string DeeplinkURL;
         public List<DeepLinkCommandBase> Commands;
+        public event Action<string, Dictionary<string, object>> OnOpenApplicationByLink;
+        public event Action<List<DeepLinkCommandBase>> OnAppliedCommands;
+
+        private const string NoneLink = "[none]";
         private void Awake()
         {
             Application.deepLinkActivated += OpenApplicationByLink;
@@ -16,32 +21,52 @@ namespace UAppToolkit.DeepLinkCommands
             }
             else
             {
-                deeplinkURL = "[none]";
+                DeeplinkURL = NoneLink;
             }
         }
 
-        private void OpenApplicationByLink(string url)
+        public void OpenApplicationByLink(string url)
         {
-            deeplinkURL = url;
+            DeeplinkURL = url;
             Debug.Log($"DeppLinksManager.OpenApplicationByLink {url}");
+
+            if (!string.IsNullOrEmpty(url) && url != NoneLink)
+            {
+                var uri = new Uri(url, UriKind.Absolute);
+                var parameters = System.Web.HttpUtility.ParseQueryString(uri.Query);
+
+                var parametersDictionary = new Dictionary<string, object>();
+
+                foreach (string parameterKey in parameters.AllKeys)
+                {
+                    parametersDictionary.Add(parameterKey, parameters[parameterKey]);
+                }
+                ApplyActions(url, parametersDictionary);
+
+                OnOpenApplicationByLink?.Invoke(url, parametersDictionary);
+            }
         }
 
         public void ApplyActions(string absoluteUrl = "", Dictionary<string, object> attributions = null)
         {
-            var anyCommandEvaluated = false;
+            var appliedCommands = new List<DeepLinkCommandBase>();
             foreach (var command in Commands)
             {
                 var tryEval = command.TryEval(absoluteUrl, attributions);
                 if (tryEval)
                 {
                     Debug.Log($"Eval DeepLink command {command.Name}");
-                    anyCommandEvaluated = true;
+                    appliedCommands.Add(command);
                 }
             }
 
-            if (!anyCommandEvaluated)
+            if (appliedCommands.Count == 0)
             {
                 Debug.LogError($"Incorrect deepLink URL {absoluteUrl}. No DeepLink Command found.");
+            }
+            else
+            {
+                OnAppliedCommands?.Invoke(appliedCommands);
             }
         }
 
