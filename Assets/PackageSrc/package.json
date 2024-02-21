@@ -1,6 +1,6 @@
 {
   "name": "com.uapp-toolkit.deep-link-commands",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "displayName": "UAppToolkit.DeepLinkCommands",
   "description": "UAppToolkit DeepLinkCommands",
   "unity": "2019.1",
